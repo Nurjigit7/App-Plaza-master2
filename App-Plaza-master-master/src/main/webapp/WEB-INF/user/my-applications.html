@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Applications </title>
+</head>
+<style>
+    /*style.css */
+    body {
+        background:url("https://www.adorama.com/alc/wp-content/uploads/2022/08/adobe-programs-tablet-imac-feature-1280x720.jpg") ;
+        background-size: cover;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .container {
+        width: 77%;
+        background-color: #526be7;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 10px 50px rgba(183, 34, 34, 0.9);
+    }
+
+    h2 {
+        text-align: center;
+        color:  white;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #4c60af;
+        color: #2f2c2c;
+    }
+    h2,focus {
+        outline: none;
+        border-color: #8937f5;
+        box-shadow: 0 0 4px rgba(189, 90, 255, 0.5);
+    }
+    button,focus {
+        outline: none;
+        border-color: #0f38b4;
+        box-shadow: 0 0 4px rgba(142, 150, 238, 0.5);
+        cursor: pointer;
+    }
+    #get-out{
+        width:50px;
+        height: 30px;
+        background: #181616;
+        font-size: 20px;
+        color: #c2b8bb;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+</style>
+<body>
+<div class="container">
+    <button id="get-out">
+        <a th:href="@{/user/main-page}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+                <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
+            </svg>
+        </a>
+    </button>
+    <h2>My Applications</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>DESCRIPTION</th>
+            <th>DEVELOPER</th>
+            <th>VERSION</th>
+            <th>APP STATUS</th>
+            <th>GENRE NAME</th>
+            <th>CREATE DATE</th>
+            <th>UPDATE</th>
+            <th>DELETE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Здесь будет генерироваться список данных -->
+        <tr th:each="app:${myApplications}">
+            <td th:text="${app.id}"></td>
+            <td th:text="${app.name}"/>
+            <td th:text="${app.description}"/>
+            <td th:text="${app.developer}"/>
+            <td th:text="${app.version}"/>
+            <td th:text="${app.appStatus}"/>
+            <td th:text="${app.genreName}"/>
+            <td th:text="${app.createDate}"/>
+            <td><a th:href="@{/update/{id}(id=${app.getId()})}">
+                <button style="height: 40px; width: 90px; background-color:#4caf50;">UPDATE</button></a></td>
+            <td><a th:href="@{/delete/{id}(id=${app.getId()})}">
+                <button style="height: 40px; width: 90px; background-color:red;">DELETE</button></a></td>
+        </tr>
+        </tbody>
+    </table>
+    <button style="height:40px; width: 120px;background-color:#4caf50"><a th:href="@{/applications/add}">CREATE APPLICATION</a></button>
+
+</div>
+</body>
+</html>

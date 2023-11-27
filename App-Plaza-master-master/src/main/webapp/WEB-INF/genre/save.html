@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>form genre</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7OKEJSiqDvE3Lrr7PIgmPGNL9Ss0C3rhVyQ&usqp=CAU)"
+>
+<div class="jumbotron text-center" style="height: 300px">
+    <tr style="margin-bottom: 50px">
+        <th><img src="https://wgntv.com/wp-content/uploads/sites/5/2021/10/GettyImages-1337403704.jpg?w=2560&h=1440&crop=1"
+                class="img-rounded" alt="Cinque Terre" style="width: 150px; height: 100px;"></th>
+
+
+        <th><img src="https://img.freepik.com/premium-vector/telegram-icon-social-media-popular-messenger-app_277909-203.jpg"
+                class="img-rounded" alt="Cinque Terre" style="width: 200px; height: 130px;"></th>
+        <th><img
+                src="https://media.kasperskydaily.com/wp-content/uploads/sites/90/2021/02/18170011/what-is-off-facebook-activity-featured.jpg"
+                class="img-rounded" alt="Cinque Terre" style="width: 250px; height: 150px; "></th>
+        <th><img
+                src="https://instasize.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fmunkee%2Fimage%2Fupload%2Fv1677712288%2Finstasize-website%2Flearn%2Flrm1ehuepxxgjntqr1hx.webp&w=3840&q=75"
+                class="img-rounded" alt="Cinque Terre" style="width: 200px; height: 130px; margin-bottom: 10px">
+        </th>
+        <th><img src="https://web-assets.esetstatic.com/wls/2023/03/whatsapp-scams-avoid.jpg"
+                 class="img-rounded" alt="Cinque Terre" style="width: 150px; height: 100px">
+        </th>
+</div>
+<form
+        th:object="${genre}"
+        th:action="@{/genre/save}"
+        th:method="post"
+        style="width: 500px; height: 300px; margin-top: 10px; margin-left: 300px">
+    <div class="form-group">
+        <label for="1" style="color:dodgerblue">Genre Name</label>
+        <input th:field="${genre.name}" type="text" class="form-control" id="1" placeholder="Name">
+    </div>
+    <div class="form-group">
+        <label for="2" style="color: dodgerblue">Description</label>
+        <input th:field="${genre.description}" type="text" class="form-control" id="2" placeholder="Description">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+</body>
+</html>

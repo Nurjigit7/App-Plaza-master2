@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+</head>
+<style>
+    /* style.css */
+    body {
+        font-family: Arial, sans-serif;
+        /*background-color: rgb(0, 0, 0);*/
+        background-image:url("https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D");
+        background-size: 100vh;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .container {
+        width: 40%;
+        background-color: #3d3d3d;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: black;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #171704;
+    }
+
+    td:first-child {
+        font-weight: bold;
+    }
+    button {
+        padding: 5px;
+        font-size: 15px;
+        background-color: #593bc9; /* Цвет фона кнопки */
+        color: black; /* Цвет текста кнопки */
+        border: none; /* Убираем границу кнопки */
+        border-radius: 10px; /* Закругляем углы кнопки */
+        cursor: pointer; /* Устанавливаем курсор в виде стрелки */
+    }
+
+    button,focus {
+        outline: none;
+        border-color: #9012d0;
+        box-shadow: 0 0 4px rgba(137, 15, 218, 0.5);
+    }
+    #get-out{
+        width:50px;
+        height: 30px;
+        background: #181616;
+        font-size: 20px;
+        color: #c2b8bb;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+</style>
+<body>
+<div class="container">
+    <button id="get-out">
+        <a th:href="@{/user/main-page}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+                <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
+            </svg>
+        </a>
+    </button>
+    <h2>Information</h2>
+    <table>
+        <tbody th:object="${user}">
+        <tr >
+            <td>ID:</td>
+            <td th:text="${user.id}"></td> <!-- Замени на фактический ID пользователя -->
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td th:text="${user.name}"></td> <!-- Замени на фактическое имя пользователя -->
+        </tr>
+        <tr>
+            <td>Age:</td>
+            <td th:text="${user.age}"></td> <!-- Замени на фактический возраст пользователя -->
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td th:text="${user.email}"></td> <!-- Замени на фактический email пользователя -->
+        </tr>
+        <tr>
+            <td>Role:</td>
+            <td th:text="${user.getAuthorities()}"></td> <!-- Замени на фактическую роль пользователя -->
+        </tr>
+        <tr>
+            <td>Subscribe:</td>
+            <td th:text="${user.subscribeToTheNewsletter}"></td> <!-- Замени на фактическое значение подписки на рассылку -->
+        </tr>
+        <tr>
+            <td>Subscribe status:</td>
+            <td th:text="${user.subscriptionStatus}"></td> <!-- Замени на фактический статус подписки -->
+        </tr>
+        <tr>
+            <td>Create date:</td>
+            <td th:text="${user.createDate}"></td> <!-- Замени на фактическую дату создания пользователя -->
+        </tr>
+        </tbody>
+    </table>
+        <button><a th:href="@{/update/{id}(id=${user.getId()})}"><strong>UPDATE</strong></a>
+        </button>
+    <button><a th:href="@{/main-page}"><strong>Submit</strong></a></button>
+</div>
+</body>
+</html>

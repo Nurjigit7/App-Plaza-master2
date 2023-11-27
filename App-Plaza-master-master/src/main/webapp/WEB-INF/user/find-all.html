@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Users </title>
+</head>
+<style>
+    /* style.css */
+    body {
+        background:url("https://cdn-media-2.freecodecamp.org/w1280/5f9c9c8c740569d1a4ca32d2.jpg") ;
+        background-size: cover;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    .container {
+        width:80%;
+        background-color: #3e76c9;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgb(35, 33, 28);
+    }
+
+    h2{
+        text-align: center;
+        color: navajowhite;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th{
+        background-color: #526be7;
+        color: navajowhite;
+
+    }
+    button,focus {
+        outline: none;
+        border-color: #0f38b4;
+        box-shadow: 0 0 4px rgba(137, 15, 218, 0.5);
+        cursor: pointer;
+    }
+    #get-out{
+        width:40px;
+        height: 30px;
+        background: #181616;
+        font-size: 20px;
+        color: #c2b8bb;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+</style>
+<body>
+<div class="container">
+    <h2>USERS</h2>
+    <button id="get-out">
+        <a th:href="@{/user/main-page}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+                <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
+            </svg>
+        </a>
+    </button>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>USER NAME</th>
+            <th>AGE</th>
+            <th>EMAIL</th>
+            <th>SUBSCRIBE</th>
+            <th>ROLE</th>
+            <th>STATUS</th>
+            <th>CREATE DATE</th>
+<!--            <th>UPDATE</th>-->
+            <th sec:authorize="hasAuthority('ADMIN')" >DELETE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Здесь будет генерироваться список данных -->
+        <tr th:each="user:${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"/>
+            <td th:text="${user.age}"/>
+            <td th:text="${user.email}"/>
+            <td th:text="${user.subscribeToTheNewsletter}"/>
+            <td th:text="${user.getAuthorities()}"/>
+            <td th:text="${user.subscriptionStatus}"/>
+            <td th:text="${user.createDate}"/>
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/{id}(id=${user.getId()})}">
+                <button style="height: 40px; width: 90px; background-color:red;cursor: pointer">DELETE</button></a></td>
+        </tbody>
+    </table>
+    <button style="height:40px;width:110px;background-color:#4d71e5"><a th:href="@{/add}">CREATE USER</a></button>
+    <button style="height: 40px;width: 100px;background-color: #526be7;"><a th:href="@{/profile}">PROFILE</a></button>
+</div>
+</body>
+</html>

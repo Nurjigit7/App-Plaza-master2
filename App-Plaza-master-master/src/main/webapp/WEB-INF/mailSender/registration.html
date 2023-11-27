@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<style>
+    body {
+        background-image: url("https://www.researchgate.net/profile/Md-Mahfuzul-Haque/publication/344069892/figure/fig6/AS:932109636083723@1599243663531/Home-page-of-the-application.jpg");
+        background-color: #2c3e50;
+    }
+
+    .container {
+        max-width: 1170px;
+        padding: 0 15px;
+        margin: 0 auto;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+    }
+
+    ul {
+        list-style: none;
+
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .list {
+        text-align: center;
+        width: 600px;
+        margin: 30px auto 0;
+        text-transform: uppercase;
+        align-items: center;
+    }
+
+    li {
+        width: 600px;
+        margin-bottom: 20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-radius: 5px;
+        border-color: rgba(69, 171, 243, 0.99);
+        color: #fff;
+        box-shadow: 0 0 40px 40px rgb(52, 152, 219) inset, 0 0 0 0 rgb(52, 152, 219);
+        -webkit-transition: all 150ms ease-in-out;
+        transition: all 150ms ease-in-out;
+    }
+
+    li:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 10px 0 rgb(52, 152, 219) inset, 0 0 10px 4px rgb(52, 152, 219);
+    }
+
+</style>
+<body>
+<div class="container">
+    <ul class="list">
+        <a sec:authorize="hasAuthority('ADMIN')" href="/applications/add">
+            <li>Application</li>
+        </a>
+        <a sec:authorize="hasAuthority('ADMIN')" href="/genre/find-all">
+            <li>Genre</li>
+        </a>
+        <a sec:authorize="hasAuthority('ADMIN')" href="/find-all">
+            <li>Users</li>
+        </a>
+        <a sec:authorize="hasAnyAuthority('ADMIN', 'USER')" href="/add">
+            <li>Registration</li>
+        </a>
+        <a href="/profile">
+            <li>Profile</li>
+        </a>
+        <a href="/login"><li>EXIT</li>
+        </a>
+    </ul>
+</div>
+
+
+</body>
+</html>

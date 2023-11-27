@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Genres </title>
+</head>
+<style>
+    /* style.css */
+    body {
+        background:url("https://dataseat.com/wp-content/uploads/2023/08/Enhanced-Contextual-Targeting-blog_linkedin-1.jpg") ;
+        background-size: cover;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+   .container {
+        width:80%;
+        background-color: #3e76c9;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgb(35, 33, 28);
+    }
+
+   h2{
+        text-align: center;
+        color: navajowhite;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th{
+        background-color: #526be7;
+        color: navajowhite;
+
+    }
+    button,focus {
+        outline: none;
+        border-color: #0f38b4;
+        box-shadow: 0 0 4px rgba(137, 15, 218, 0.5);
+        cursor: pointer;
+    }
+
+</style>
+<body>
+<div class="container">
+    <h2>Genres</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>GENRE NAME</th>
+            <th>DESCRIPTION</th>
+            <th>CREATE DATE</th>
+            <th>UPDATE</th>
+            <th>DELETE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Здесь будет генерироваться список данных -->
+        <tr th:each="genre:${genreList}">
+            <td th:text="${genre.id}"/>
+            <td th:text="${genre.name}"/>
+            <td th:text="${genre.description}"/>
+            <td th:text="${genre.createDate}"/>
+            <td><a th:href="@{/update/{id}(id=${genre.getId()})}">
+                <button style="height: 40px; width: 100px; background-color:#4caf50;">UPDATE</button></a></td>
+            <td><a th:href="@{/delete/{id}(id=${genre.getId()})}">
+                <button style="height: 40px; width: 100px; background-color: #e34e4e;">DELETE</button></a></td>
+
+        </tbody>
+    </table>
+    <button style="height:40px;width:120px;background-color:#4d71e5"><a th:href="@{/genre/add}">CREATE GENRE</a></button>
+
+</div>
+</body>
+</html>
